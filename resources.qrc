@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/dbschema/db.schema</file>
+        <file>resources/images/add.png</file>
+        <file>resources/images/background.bmp</file>
+        <file>resources/images/background.png</file>
+        <file>resources/images/btn_close.png</file>
+        <file>resources/images/cachoeira.jpg</file>
+        <file>resources/images/copy.png</file>
+        <file>resources/images/corredeiras.jpg</file>
+        <file>resources/images/cut.png</file>
+        <file>resources/images/delete.png</file>
+        <file>resources/images/drawer.png</file>
+        <file>resources/images/editor.png</file>
+        <file>resources/images/exit.png</file>
+        <file>resources/images/export.png</file>
+        <file>resources/images/gaiser.jpg</file>
+        <file>resources/images/import.png</file>
+        <file>resources/images/new.png</file>
+        <file>resources/images/ok.png</file>
+        <file>resources/images/open.png</file>
+        <file>resources/images/paste.png</file>
+        <file>resources/images/remove.png</file>
+        <file>resources/images/report.png</file>
+        <file>resources/images/save.png</file>
+        <file>resources/images/search.png</file>
+        <file>resources/images/update.png</file>
+    </qresource>
+</RCC>

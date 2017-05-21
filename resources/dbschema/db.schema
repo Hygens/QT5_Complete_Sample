@@ -1,0 +1,2 @@
+CREATE TABLE reservatorios (id INTEGER PRIMARY KEY AUTOINCREMENT, minvol REAL, availvol REAL, maxvol REAL);
+CREATE TABLE zonas (id INTEGER PRIMARY KEY AUTOINCREMENT, minvol REAL, maxvol REAL, priority INTEGER, reservid INTEGER, FOREIGN KEY (reservid) REFERENCES reservatorios);

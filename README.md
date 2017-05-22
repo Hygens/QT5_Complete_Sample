@@ -82,11 +82,10 @@ After catalog "Reservatórios"(Reservoir) and "Zonas e Prioridades"(Zones and Pr
 
 ![Register complete](images/registred_rep_zones.png)
 
-If the list of zones is more extent you can search one zone with search box at right on QTableView. Only digit the priority and the line is showed and selected.
+If the list of zones is more extent you can search one zone with search box at right on QTableView. Only digit the priority and execute return key after that the line is showed and selected.
 
 ![Search priority...](images/search.png) 
 
-> After register all data needed are three possibilities here.You can export data for one Reservoir and your zones and priorities for text file. You can import one file with data for one reservoir, zones and priorities. You can view one form with the availability of water in each reservoir for priority in ascending order up the limit or water in the selected reservoir.
 
 In sequence each of the buttons below execute these tasks described on information for you. Observe the last image showing the last task after the images for buttons:
 

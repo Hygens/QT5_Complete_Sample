@@ -10,6 +10,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SIGAPriority
 TEMPLATE = app
+TRANSLATIONS = translations/translate_pt.ts \
+               translations/translate_en.ts \
+               translations/translate_es.ts
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -30,7 +33,8 @@ SOURCES += main.cpp\
     zoneForm.cpp \
     mainform.cpp \
     lineediticonized.cpp \
-    availshow.cpp
+    availshow.cpp \
+    clicklabel.cpp
 
 HEADERS  += \
     priorityZone.h \
@@ -39,7 +43,8 @@ HEADERS  += \
     mainform.h \
     zoneForm.h \
     lineediticonized.h \
-    availshow.h
+    availshow.h \
+    clicklabel.h
 
 FORMS    += \
     availshow.ui
@@ -60,7 +65,6 @@ PWD_WIN ~= s,/,\\,g
 DESTDIR_WIN ~= s,/,\\,g
 
 copyfiles.commands = $$quote(cmd /c xcopy /Y /S /E /I /C $${PWD_WIN}\\sqldrivers $${DESTDIR_WIN}\\sqldrivers)
-
 QMAKE_EXTRA_TARGETS += copyfiles
 POST_TARGETDEPS += copyfiles
 

@@ -9,6 +9,7 @@
 #include "availshow.h"
 #include "priorityUtils.h"
 #include "lineediticonized.h"
+#include "clicklabel.h"
 
 QT_BEGIN_NAMESPACE
 class QDialogButtonBox;
@@ -33,7 +34,7 @@ class MainForm : public QWidget
     Q_OBJECT
 
 public:
-    MainForm();
+    MainForm(QTranslator*);
 
 protected:
     bool eventFilter(QObject*, QEvent*) override;
@@ -53,18 +54,19 @@ private slots:
     void exportToFile();
     void validateCells(const QModelIndex&, const QModelIndex&);
     void validatePressed();
+    void switchLanguage(QAction*);
 
 private:
     void createRepositoryPanel();
     void createZonePanel();
     void initializeZones(double,int);
+    void retranslateUi();
     QString openFile(int type);
     QModelIndex existsRepository(QString id);
 
     const int duration = 2000;
     const int OPEN_FILE = 1000;
-    const int SAVE_FILE = 1001;
-
+    const int SAVE_FILE = 1001;    
 
     QSqlRelationalTableModel *repositoryModel;
     QSqlRelationalTableModel *zoneModel;
@@ -72,6 +74,8 @@ private:
     QWidget *zonePanel;
     QLabel *repositoryLabel;
     QLabel *zoneLabel;
+    QLabel *brFlag;
+    QLabel *euaFlag;
     QTableView *repositoryView;
     QTableView *zoneView;
     QSplitter *splitter;
@@ -90,6 +94,7 @@ private:
     QWidget *boxButtonsRepository;
     QWidget *boxButtonsZone;
     bool invalidValue=false;
+    QTranslator *appTranslator;
 };
 
 #endif

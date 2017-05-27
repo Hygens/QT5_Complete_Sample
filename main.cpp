@@ -12,7 +12,7 @@ void createTables(const QString &sqlLine) {
 void createDatabase() {
     QFile f(":/resources/dbschema/db.schema");
     if(!f.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "cannot open resource file";
+        qDebug() << QObject::tr("cannot open resource file");
     QTextStream in(&f);
     QString line;
     QString sqlStatement = "";
@@ -64,7 +64,7 @@ bool createConnection()
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     bool existingData = QFile::exists("siga.dat");
     if (!existingData)
@@ -76,8 +76,12 @@ int main(int argc, char *argv[])
         if (!createConnection())
             return 1;
 
-    MainForm w;
+    QTranslator *appTranslator = new QTranslator;
+    appTranslator->load("translate_" + QLocale::system().name(), ":/translations");
+    app.installTranslator(appTranslator);
+
+    MainForm w(appTranslator);
     w.showMaximized();
 
-    return a.exec();
+    return app.exec();
 }

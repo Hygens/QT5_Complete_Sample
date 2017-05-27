@@ -1,9 +1,16 @@
 <RCC>
     <qresource prefix="/">
+        <file>images/add_reserv.png</file>
+        <file>images/add_zone.png</file>
+        <file>images/availability.png</file>
+        <file>images/main.png</file>
+        <file>images/registred_rep_zones.png</file>
+        <file>images/search.png</file>
         <file>resources/dbschema/db.schema</file>
         <file>resources/images/add.png</file>
         <file>resources/images/background.bmp</file>
         <file>resources/images/background.png</file>
+        <file>resources/images/br_flag.jpg</file>
         <file>resources/images/btn_close.png</file>
         <file>resources/images/cachoeira.jpg</file>
         <file>resources/images/copy.png</file>
@@ -12,6 +19,7 @@
         <file>resources/images/delete.png</file>
         <file>resources/images/drawer.png</file>
         <file>resources/images/editor.png</file>
+        <file>resources/images/eua_flag.jpg</file>
         <file>resources/images/exit.png</file>
         <file>resources/images/export.png</file>
         <file>resources/images/gaiser.jpg</file>
@@ -25,5 +33,11 @@
         <file>resources/images/save.png</file>
         <file>resources/images/search.png</file>
         <file>resources/images/update.png</file>
+        <file>translations/translate_en.qm</file>
+        <file>translations/translate_en.ts</file>
+        <file>translations/translate_es.qm</file>
+        <file>translations/translate_es.ts</file>
+        <file>translations/translate_pt.qm</file>
+        <file>translations/translate_pt.ts</file>
     </qresource>
 </RCC>

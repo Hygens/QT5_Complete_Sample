@@ -1,6 +1,6 @@
 #include "mainform.h"
 
-MainForm::MainForm()
+MainForm::MainForm(QTranslator *appTrans): appTranslator(appTrans)
 {
     QSize size = QSize(40,40);
     addButton = new QPushButton();
@@ -126,13 +126,45 @@ MainForm::MainForm()
     repositoryView->setCurrentIndex(repositoryModel->index(0, 0));
 }
 
+void MainForm::retranslateUi() {
+    addButton->setToolTip(tr("Incluir Reservatório e Zonas"));
+    deleteRepButton->setToolTip(tr("Apagar Reservatório e Zonas"));
+    updateButton->setToolTip(tr("Editar Reservatório"));
+    saveButton->setToolTip(tr("Salvar dados na base de Reservatórios"));
+    exportButton->setToolTip(tr("Exportar dados para arquivo de um Repositório e Zonas"));
+    importButton->setToolTip(tr("Importar dados para arquivo de um Repositório e Zonas"));
+    saveButton->setToolTip(tr("Salvar dados na base de Reservatórios"));
+    availButton->setToolTip(tr("Disponibilidade por Repositório e Zonas"));
+    editButton->setToolTip(tr("Formulário para Editar/Incluir Zona"));
+    searchEdit->setToolTip(tr("Pesquisa Zona por Prioridade"));
+    quitButton->setToolTip(tr("Fechar a aplicação"));
+
+    repositoryLabel ->setText(tr("Reservatórios"));
+    repositoryModel->setHeaderData(Repository_AvailVol,
+                                   Qt::Horizontal, tr("Volume Inicial(hm³)"));
+    repositoryModel->setHeaderData(Repository_MinVol,
+                                   Qt::Horizontal, tr("Volume Mínimo(hm³)"));
+    repositoryModel->setHeaderData(Repository_MaxVol,
+                                   Qt::Horizontal, tr("Volume Máximo(hm³)"));
+    repositoryView->setToolTip(tr("Selecione a linha desejada..."));
+
+    zoneModel->setHeaderData(Zone_MinVol, Qt::Horizontal, tr("Limite Inferior(hm³)"));
+    zoneModel->setHeaderData(Zone_MaxVol, Qt::Horizontal, tr("Limite Superior(hm³)"));
+    zoneModel->setHeaderData(Zone_Priority, Qt::Horizontal, tr("Prioridade"));
+    zoneView->setToolTip(tr("Selecione a linha desejada..."));
+
+    zoneLabel ->setText(tr("Zonas"));
+
+    setWindowTitle(tr("RESERVATÓRIOS, ZONAS, PRIORIDADES E DISPONIBILIDADES"));
+}
+
 QString MainForm::openFile(int type) {
     QString selectedFilter;
     QString fileName;
     if (this->SAVE_FILE==type)
     {
         fileName = QFileDialog::getSaveFileName(this,
-                                                tr("Arquivo a importar..."),
+                                                tr("Arquivo a exportar..."),
                                                 QString(),
                                                 tr("All Files (*);;Text Files (*.txt)"),
                                                 &selectedFilter);
@@ -347,7 +379,7 @@ void MainForm::initializeZones(double minvol, int reservid) {
     if(q.exec(sqlstr)==false)
     {
         QMessageBox *pmsg = new QMessageBox;
-        pmsg->setText("Erro na gravação de dados na tabela zones.");
+        pmsg->setText(tr("Erro na gravação de dados na tabela zones."));
         pmsg->setInformativeText(q.lastError().text());
         pmsg->exec();
         return;
@@ -406,11 +438,11 @@ void MainForm::createRepositoryPanel()
     repositoryView->setSelectionBehavior(QAbstractItemView::SelectRows);
     repositoryView->setColumnHidden(Repository_Id, true);
     repositoryView->resizeColumnsToContents();
-    repositoryView->horizontalHeader()->setStretchLastSection(true);
+    repositoryView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     repositoryView->horizontalHeader()->setVisible(true);
     repositoryView->setLocale(QLocale::English);
     repositoryView->installEventFilter(this);
-    repositoryView->setToolTip("Selecione a linha desejada...");
+    repositoryView->setToolTip(tr("Selecione a linha desejada..."));
     repositoryView->setToolTipDuration(duration);
 
     repositoryLabel = new QLabel(tr("Reservatórios"));
@@ -428,8 +460,35 @@ void MainForm::createRepositoryPanel()
             SIGNAL(pressed(QModelIndex)),
             this, SLOT(validatePressed()));
 
+    QSize size = QSize(20,20);
+    QWidget *subtitle = new QWidget;
+    QLabel *euaFlag = new ClickLabel;
+    QIcon pixmap = QIcon(":/resources/images/eua_flag.jpg");
+    euaFlag->setPixmap(pixmap.pixmap(size));
+    euaFlag->setMinimumSize(size);
+    QAction *acten = new QAction();
+    acten->setData(tr("en"));
+    euaFlag->addAction(acten);
+    connect(euaFlag,SIGNAL(clicked(QAction*)),this,SLOT(switchLanguage(QAction*)));
+    QLabel *brFlag = new ClickLabel;
+    QIcon pixmap1 = QIcon(":/resources/images/br_flag.jpg");
+    brFlag->setPixmap(pixmap1.pixmap(size));
+    brFlag->setMinimumSize(size);
+    QAction *actbr = new QAction();
+    actbr->setData(tr("pt"));
+    brFlag->addAction(actbr);
+    connect(brFlag,SIGNAL(clicked(QAction*)),this,SLOT(switchLanguage(QAction*)));
+
+    QHBoxLayout *hlayout = new QHBoxLayout;
+    hlayout->addWidget(repositoryLabel);
+    hlayout->setSpacing(0);
+    hlayout->addStretch();
+    hlayout->addWidget(euaFlag);
+    hlayout->addWidget(brFlag);
+    subtitle->setLayout(hlayout);
+
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(repositoryLabel);
+    layout->addWidget(subtitle);
     layout->addWidget(boxButtonsRepository);
     layout->addWidget(repositoryView);
     repositoryPanel->setLayout(layout);
@@ -481,13 +540,12 @@ void MainForm::createZonePanel()
     zoneView->setSelectionBehavior(QAbstractItemView::SelectRows);
     zoneView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     zoneView->resizeColumnsToContents();
-    zoneView->horizontalHeader()->setStretchLastSection(true);
+    zoneView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     zoneView->setColumnHidden(Zone_Id, true);
     zoneView->setColumnHidden(Zone_ReservId, true);
     zoneView->setLocale(QLocale::English);
-    zoneView->setToolTip("Selecione a linha desejada...");
+    zoneView->setToolTip(tr("Selecione a linha desejada..."));
     zoneView->setToolTipDuration(duration);
-
 
     zoneLabel = new QLabel(tr("Zonas"));
     zoneLabel->setFont(QFont("Helvetica [Cronyx]", 15, QFont::Bold));
@@ -552,5 +610,12 @@ bool MainForm::eventFilter(QObject *obj, QEvent *event)
         }
     }
     return QObject::eventFilter(obj, event);
+}
+
+void MainForm::switchLanguage(QAction *action)
+{
+    QString locale = action->data().toString();
+    appTranslator->load("translate_" + locale, ":/translations");
+    this->retranslateUi();
 }
 

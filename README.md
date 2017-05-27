@@ -5,11 +5,11 @@ The idea of that simple project is based in some rules presented on (1) and (2) 
 
 *[SergioVieira GitHub](https://github.com/sergiosvieira/funceme-selecao-siga/blob/master/tasks.md)
 
- It's show the big power of uses with C/C++ languages and that languages modernizing and facilitating much of tedious  configurations needed in that types of projects.
+ It's showing the big power of uses with C/C++ languages and that languages modernizing and facilitating much of tedious  configurations needed in that types of projects.
 
 The focus here is not implement the more advanced interface of the universe and the more complete project possible but show more and more resources possible in one unique project as base for other implementations or ideas. Any person can use and studied each idea or advance that idea as to desire.
 
-For that moment the GUI is in Portuguese(pt_BR) only, but, on available time I will be localize for more languages.
+For that moment the GUI is in Portuguese(pt_BR) and English(en_US) only, but, on available time I will be localize for more languages.
 
 Things that you'll can view here is:
 
@@ -35,6 +35,8 @@ Things that you'll can view here is:
 
 * All types of SIGNALS between mouse and keyboard keys actions in various components.
 
+* Translations for English and Portuguese.
+
 * Not have 1000 lines of code and have one bit part of one catalog for Reservoir operation and some features for zones and priorities.
 
 * [The backgroung is one image for one local that I like much: Iceland.](https://vividscreen.info/pic/iceland/20249/for-widescreen-desktop-pc-1920x1080-full-hd)
@@ -46,7 +48,7 @@ All operations can be executed about explain the tootips.
 
 ![Main Application Dialog](images/main.png)
 
-The first step is register one reservoir using the QTableView "Reservatórios" clicking on plus signal button on as in image below:
+The first step is register one reservoir using the QTableView "Reservoir" clicking on plus signal button on as in image below:
 
 ![Click on add button...](resources/images/add.png)
 
@@ -56,17 +58,17 @@ Click after in Save button:
 
 ![Save button](resources/images/ok.png)
 
-The next step is include zones and priorities for zones. Said that with one "Reservatório" selected on your own QTableView you need click on plus signal button on QTableView "Zonas e Prioridades no Reservatório Selecionado":
+The next step is include zones and priorities for zones. Said that with one "Reservoir" selected on your own QTableView you need click on plus signal button on QTableView "Zones and Priorities on Selected Reservoir":
 
 ![Click on add button...](resources/images/add.png)
 
 In that step show one form with fields with rules for values  as that:
 
-* Limite Inferior(hm³) < Limite Superior(hm³) <=  Volume Máximo(hm³)
+* Lower Limit(hm³) < Upper Limit(hm³) <=  Maximum Volume(hm³)
 
 Other rule is:
 
-* Priotity(Prioridade) is always growing starting from 1(one) and not repeated and the fields on QTableView for zones is ordered for Priority.
+* Priotity is always growing starting from 1(one) and not repeated and the fields on QTableView for zones is ordered for Priority.
 
 ![Add Zone Form...](images/add_zone.png)
 
@@ -78,7 +80,7 @@ Other rule on same form is that you can delete only the last zone with the major
 
 ![Delete image](resources/images/remove.png)
 
-After catalog "Reservatórios"(Reservoir) and "Zonas e Prioridades"(Zones and Priorities) you get the image below:
+After catalog "Reservoir" and "Zones and Priorities" you get the image below:
 
 ![Register complete](images/registred_rep_zones.png)
 

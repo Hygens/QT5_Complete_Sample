@@ -466,6 +466,8 @@ void MainForm::createRepositoryPanel()
     QIcon pixmap = QIcon(":/resources/images/eua_flag.jpg");
     euaFlag->setPixmap(pixmap.pixmap(size));
     euaFlag->setMinimumSize(size);
+    euaFlag->setToolTip(tr("English"));
+    euaFlag->setToolTipDuration(2000);
     QAction *acten = new QAction();
     acten->setData(tr("en"));
     euaFlag->addAction(acten);
@@ -477,6 +479,8 @@ void MainForm::createRepositoryPanel()
     QAction *actbr = new QAction();
     actbr->setData(tr("pt"));
     brFlag->addAction(actbr);
+    brFlag->setToolTip(tr("Portuguese"));
+    brFlag->setToolTipDuration(2000);
     connect(brFlag,SIGNAL(clicked(QAction*)),this,SLOT(switchLanguage(QAction*)));
 
     QHBoxLayout *hlayout = new QHBoxLayout;
